@@ -55,6 +55,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include=".gitignore" />
+    <Content Include="LICENSE.txt" />
     <Content Include="README.md" />
   </ItemGroup>
   <ItemGroup>
