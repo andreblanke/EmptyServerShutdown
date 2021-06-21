@@ -15,6 +15,12 @@ is one example of such a daemon.
 It is targeted at systems running TShock in more memory-constrained environments, such as on
 Raspberry Pis.
 
+## Installation
+
+Navigate to the [latest release](https://github.com/andreblanke/EmptyServerShutdown/releases/latest),
+download `EmptyServerShutdown.dll`, and drop it into the `ServerPlugins` folder in your TShock root
+directory.
+
 ## Configuration
 
 The plugin configuration file `config.json` is located under the `empty-server-shutdown` folder of
