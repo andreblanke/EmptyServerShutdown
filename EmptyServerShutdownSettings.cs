@@ -7,7 +7,7 @@ namespace EmptyServerShutdown
     {
         #region Server shutdown
         [Description("Whether the world should be saved on server shutdown.")]
-        public bool Save { get; } = true;
+        public bool Save { get; } = false;
 
         [Description("The shutdown reason which appears in the server logs and the command line.")]
         public string Reason { get; } = "Server shutting down!";

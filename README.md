@@ -29,7 +29,7 @@ lists the currently available configuration options.
 
 | Option                       | Description                                             | Default value                         |
 |------------------------------|---------------------------------------------------------|---------------------------------------|
-| Save                         | If the world should be saved on server stop             | `true`                                |
+| Save                         | If the world should be saved on server stop             | `false`                               |
 | Reason                       | Shutdown reason logged printed to console and log files | `"Server shutting down!"`             |
 | ShutdownDelay                | Delay of shutdown after last player left server         | `"00:05:00"`                          |
 | ConsoleInfoShutdownScheduled | Log message printed when server shutdown is scheduled   | `"Scheduled server shutdown at {0}."` |
