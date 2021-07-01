@@ -57,6 +57,13 @@ namespace EmptyServerShutdown
 
             ServerApi.Hooks.ServerJoin.Register(this, OnServerJoin);
             ServerApi.Hooks.ServerLeave.Register(this, OnServerLeave);
+
+            /*
+             * Treat the game initialization the same way as a player that is leaving to prevent the server from
+             * running indefinitely if it is lazily activated (e.g. via terrariad) but then no player joins the
+             * server.
+             */
+            ServerApi.Hooks.GamePostInitialize.Register(this, OnServerLeave);
         }
 
         protected override void Dispose(bool disposing)
@@ -66,12 +73,14 @@ namespace EmptyServerShutdown
                 ServerApi.Hooks.ServerJoin.Deregister(this, OnServerJoin);
                 ServerApi.Hooks.ServerLeave.Deregister(this, OnServerLeave);
 
+                ServerApi.Hooks.GamePostInitialize.Deregister(this, OnServerLeave);
+
                 ScheduledServerShutdown?.Dispose();
             }
             base.Dispose(disposing);
         }
 
-        private void OnServerJoin(JoinEventArgs args)
+        private void OnServerJoin(EventArgs args)
         {
             void CancelServerShutdown()
             {
@@ -88,7 +97,7 @@ namespace EmptyServerShutdown
                 CancelServerShutdown();
         }
 
-        private void OnServerLeave(LeaveEventArgs args)
+        private void OnServerLeave(EventArgs args)
         {
             void ScheduleServerShutdown()
             {
@@ -107,7 +116,7 @@ namespace EmptyServerShutdown
              * TShock.Utils.GetActivePlayerCount() returns the active player count before the leave event,
              * i.e. 1 if there are no players left on the server after the leave event.
              */
-            if (TShock.Utils.GetActivePlayerCount() == 1)
+            if (TShock.Utils.GetActivePlayerCount() <= 1)
                 ScheduleServerShutdown();
         }
     }
