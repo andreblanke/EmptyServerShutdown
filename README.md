@@ -3,8 +3,6 @@
 A [TShock](https://github.com/Pryaxis/TShock) plugin that schedules a server shutdown a
 configurable amount of time after the last left the server.
 
----
-
 ## About
 
 This plugin is intended to be used in conjunction with a daemon that automatically launches
